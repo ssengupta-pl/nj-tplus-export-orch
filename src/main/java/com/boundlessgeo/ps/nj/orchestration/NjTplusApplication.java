@@ -34,6 +34,7 @@ public class NjTplusApplication {
 		SpringCamelContext camelContext = new SpringCamelContext(
 				applicationContext);
 		camelContext.addRoutes(routeBuilder());
+		camelContext.setTracing(true);
 		return camelContext;
 	}
 

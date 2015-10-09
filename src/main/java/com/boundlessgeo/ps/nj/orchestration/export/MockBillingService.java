@@ -12,14 +12,14 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class MockBillingService {
-	public String isUserInGoodStanding(HashMap<String, String> arguments) {
-		String user = arguments.get("user");
-		String json = "{" + "\"user\": " + user + ","
-				+ "\"standing\":{{standing}}" + "}";
+	public HashMap<String, String> isUserInGoodStanding(
+			HashMap<String, String> arguments) {
+		HashMap<String, String> response = new HashMap<String, String>();
+		response.put("user", arguments.get("user"));
+		response.put("standing",
+				Math.round(Math.random() * 100) > 30 ? "good" : "bad");
 
-		return Math.round(Math.random() * 100) > 30
-				? json.replace("{{standing}}", "good")
-				: json.replace("{{standing}}", "bad");
+		return response;
 	}
 
 	public Object performBilling() {
